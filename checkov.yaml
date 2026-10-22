@@ -9,7 +9,8 @@ skip-path:
   - examples/
 
 skip-check:
-  - CKV_AWS_2     # HTTP listeners are intentional for HTTP→HTTPS redirect; HTTPS is enforced at the HTTPS listener
-  - CKV_AWS_103   # ssl_policy defaults to ELBSecurityPolicy-TLS13-1-2-2021-06 (TLS 1.2+); HTTP listeners have no ssl_policy by design
-  - CKV_AWS_91    # Access logging is configurable via access_logs_bucket; enforcement is the caller's responsibility
-  - CKV2_AWS_76   # WAF WebACL rule group contents are the caller's responsibility; module only associates the ACL
+  - CKV_AWS_2    # HTTP listeners are enforced by precondition to redirect only - plain HTTP forwarding is rejected at plan time
+  - CKV_AWS_103  # ssl_policy is validated against an allowlist of TLS 1.2+ policies - insecure policies are rejected at plan time
+  - CKV_AWS_260  # Default ingress rule allows HTTP (80) from 0.0.0.0/0 so the ALB can receive browser traffic; the listener precondition enforces HTTP-to-HTTPS redirect - plain HTTP forwarding to targets is rejected at plan time
+  - CKV_AWS_382  # Default egress rule allows all outbound so the ALB can reach any backend target; callers should restrict cidr_ipv4 to their VPC CIDR in production via security_group_egress_rules
+  - CKV2_AWS_76  # WAF WebACL rule group contents (including Log4j AMR) are the caller's responsibility; module only associates the ACL
