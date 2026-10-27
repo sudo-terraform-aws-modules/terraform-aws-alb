@@ -18,6 +18,16 @@ output "id" {
   value       = try(aws_lb.this[0].id, null)
 }
 
+output "security_group_id" {
+  description = "ID of the module-created security group. Null when create_security_group is false."
+  value       = try(aws_security_group.this[0].id, null)
+}
+
+output "security_group_arn" {
+  description = "ARN of the module-created security group. Null when create_security_group is false."
+  value       = try(aws_security_group.this[0].arn, null)
+}
+
 output "target_group_arns" {
   description = "Map of logical target group key to ARN."
   value       = { for k, v in aws_lb_target_group.this : k => v.arn }

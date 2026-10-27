@@ -22,3 +22,8 @@ variable "certificate_arn" {
   description = "ACM certificate ARN for the HTTPS listener."
   type        = string
 }
+
+variable "access_logs_bucket" {
+  description = "S3 bucket name to receive ALB access logs. The bucket policy must allow the regional ELB service account to write."
+  type        = string
+}

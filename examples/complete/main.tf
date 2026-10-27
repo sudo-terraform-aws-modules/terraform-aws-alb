@@ -7,6 +7,8 @@ module "alb" {
   subnet_ids         = var.subnet_ids
   security_group_ids = var.security_group_ids
 
+  access_logs_bucket = var.access_logs_bucket
+
   deletion_protection = false
   idle_timeout        = 60
   enable_http2        = true
@@ -62,14 +64,4 @@ module "alb" {
     Environment = "production"
     Team        = "platform"
   }
-}
-
-output "alb_dns_name" {
-  description = "DNS name of the ALB."
-  value       = module.alb.dns_name
-}
-
-output "target_group_arns" {
-  description = "Target group ARNs."
-  value       = module.alb.target_group_arns
 }
