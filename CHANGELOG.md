@@ -2,7 +2,7 @@
 
 All notable changes to this module are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the module uses [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [1.0.0] - 2026-11-02
 
 ### Breaking changes
 
@@ -67,3 +67,5 @@ All notable changes to this module are documented here. The format follows [Keep
 - `deletion_protection` defaults to `true`.
 - `drop_invalid_header_fields` hardcoded to `true`.
 - `enable_waf_fail_open` defaults to `false`.
+
+[1.0.0]: https://github.com/sudo-terraform-aws-modules/terraform-aws-alb/releases/tag/v1.0.0
